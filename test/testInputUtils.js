@@ -12,7 +12,7 @@ describe("processInput", function() {
     assert.deepStrictEqual(processInput(arguList, employsOrders), [
       ["Employee ID", "Beverage", "Quantity", "Date"],
       ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"],
-      ["Total: 01 Juice"]
+      ["Total: 1 Juice"]
     ]);
   });
 });

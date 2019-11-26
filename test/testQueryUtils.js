@@ -12,7 +12,7 @@ describe("getTotJuiceCount", function() {
         "--date": "2019-11-20T05:50:28.267Z"
       }
     ];
-    assert.deepStrictEqual(getTotJuiceCount(employOrders), ["Total: 01 Juice"]);
+    assert.deepStrictEqual(getTotJuiceCount(employOrders), ["Total: 1 Juice"]);
   });
 });
 
@@ -32,6 +32,7 @@ describe("getTransactionInArray", function() {
 
 describe("queryOrders", function() {
   it("should return the transaction history for given employ", function() {
+    let no = 1;
     assert.deepStrictEqual(
       queryOrders(
         {
@@ -49,7 +50,7 @@ describe("queryOrders", function() {
       [
         ["Employee ID", "Beverage", "Quantity", "Date"],
         ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"],
-        ["Total: 01 Juice"]
+        ["Total: 1 Juice"]
       ]
     );
   });

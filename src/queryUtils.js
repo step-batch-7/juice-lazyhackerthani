@@ -1,7 +1,7 @@
 const getTotJuiceCount = function(orders) {
   let totJuice = 0;
   const objValues = orders.map(order => {
-    totJuice = totJuice + order["--qty"];
+    totJuice = totJuice + +order["--qty"];
   });
   return ["Total: " + totJuice + " Juice"];
 };
