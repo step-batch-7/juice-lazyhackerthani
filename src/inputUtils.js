@@ -1,5 +1,5 @@
 const generalUtils = require("../src/generalUtils.js");
-let { toString, getJsonObject, getValueToProceed, getArgsObj } = generalUtils;
+let { getJsonObject, getValueToProceed, getArgsObj } = generalUtils;
 const queryUtils = require("../src/queryUtils.js");
 let { queryOrders } = queryUtils;
 

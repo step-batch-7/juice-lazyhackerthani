@@ -6,6 +6,10 @@ const getJsonObject = function(objectInString) {
   return JSON.parse(objectInString);
 };
 
+const getStringifiedObj = function(objectToStringify) {
+  return JSON.stringify(objectToStringify);
+};
+
 const getValueToProceed = function(objectToGetValue, option, defaultValue) {
   if (objectToGetValue.hasOwnProperty(option)) {
     return objectToGetValue[option];
@@ -24,5 +28,6 @@ const getArgsObj = function(argsArray) {
 
 exports.toString = toString;
 exports.getJsonObject = getJsonObject;
+exports.getStringifiedObj = getStringifiedObj;
 exports.getValueToProceed = getValueToProceed;
 exports.getArgsObj = getArgsObj;

@@ -1,6 +1,12 @@
 const assert = require("assert");
 const generalUtils = require("../src/generalUtils.js");
-let { toString, getJsonObject, getValueToProceed, getArgsObj } = generalUtils;
+let {
+  toString,
+  getJsonObject,
+  getStringifiedObj,
+  getValueToProceed,
+  getArgsObj
+} = generalUtils;
 
 describe("toString", function() {
   it("should return string splitted with \n for given array", function() {
@@ -20,6 +26,18 @@ describe("getJsonObject", function() {
       a: "1",
       b: "2"
     });
+  });
+});
+
+describe("getStringifiedObj", function() {
+  it("should return stringified object for object", function() {
+    assert.deepStrictEqual(
+      getStringifiedObj({
+        a: "1",
+        b: "2"
+      }),
+      '{"a":"1","b":"2"}'
+    );
   });
 });
 
