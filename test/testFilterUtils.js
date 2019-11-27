@@ -10,6 +10,7 @@ describe("isSubSet", function() {
   it("should return false if every key value in second object is not present in first object", function() {
     assert.deepStrictEqual(isSubSet({ c: 1 }, { a: 1, b: 2 }), false);
     assert.deepStrictEqual(isSubSet({ a: 1, b: 3 }, { a: 1, b: 2 }), false);
+    assert.deepStrictEqual(isSubSet({ a: 1 }, {}), false);
   });
 });
 

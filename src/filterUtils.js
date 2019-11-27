@@ -3,9 +3,9 @@ const getSuperSetObjects = function(subSetObj, listOfObjects) {
 };
 
 isSubSet = function(subSetObj, superSetObj) {
-  return Object.entries(subSetObj).reduce((prevStatus, keyAndValue) => {
-    return prevStatus && superSetObj[keyAndValue[0]] == keyAndValue[1];
-  }, true);
+  return Object.entries(subSetObj).every(
+    keyAndValue => superSetObj[keyAndValue[0]] == keyAndValue[1]
+  );
 };
 
 exports.isSubSet = isSubSet;
