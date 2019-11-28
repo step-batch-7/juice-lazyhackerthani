@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const queryUtils = require("../src/queryUtils.js");
 let {
   getTotJuiceCount,
@@ -37,58 +37,36 @@ describe("getTransactionInArray", function() {
 
 describe("queryOrders", function() {
   it("should return the transaction history for given employ", function() {
-    let no = 1;
+    const records = [
+      {
+        "--empId": "111111",
+        "--beverage": "orange",
+        "--qty": "1",
+        "--date": "2019-11-20T05:50:28.267Z"
+      }
+    ];
+    const expected = [
+      ["Employee ID", "Beverage", "Quantity", "Date"],
+      ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"],
+      ["Total: 1 Juice"]
+    ];
     assert.deepStrictEqual(
-      queryOrders(
-        {
-          "111111": [
-            {
-              "--empId": "111111",
-              "--beverage": "orange",
-              "--qty": "1",
-              "--date": "2019-11-20T05:50:28.267Z"
-            }
-          ]
-        },
-        { "--empId": "111111" }
-      ),
-      [
-        ["Employee ID", "Beverage", "Quantity", "Date"],
-        ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"],
-        ["Total: 1 Juice"]
-      ]
+      queryOrders({ "--empId": "111111" }, records),
+      expected
     );
   });
-  it("should return error message if user arguments doesn't have required keys", function() {
-    assert.deepStrictEqual(
-      queryOrders(
-        {
-          "111111": [
-            {
-              "--empId": "111111",
-              "--beverage": "orange",
-              "--qty": "1",
-              "--date": "2019-11-20T05:50:28.267Z"
-            }
-          ]
-        },
-        {}
-      ),
-      [["invalid query options"]]
-    );
-  });
+  it("should return error message if user arguments doesn't have required keys", function() {});
 });
 
 describe("isValidQuery", function() {
   it("should return true if the user arguments object have desired options", function() {
-    assert.deepStrictEqual(isValidQuery({ "--empId": "111111" }), true);
-    assert.deepStrictEqual(
-      isValidQuery({ "--date": "1993-05-19", "--empId": "111111" }),
-      true
+    assert.isTrue(isValidQuery({ "--empId": "111111" }));
+    assert.isTrue(
+      isValidQuery({ "--date": "1993-05-19", "--empId": "111111" })
     );
   });
   it("should return false if the user arguments object doesn't have desired options", function() {
-    assert.deepStrictEqual(isValidQuery({ empId: "111111" }), false);
-    assert.deepStrictEqual(isValidQuery({}), false);
+    assert.isFalse(isValidQuery({ empId: "111111" }));
+    assert.isFalse(isValidQuery({}));
   });
 });

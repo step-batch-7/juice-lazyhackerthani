@@ -3,7 +3,7 @@ const processInput = require("./src/inputUtils.js").processInput;
 const toString = require("./src/generalUtils.js").toString;
 
 const main = function() {
-  const employsOrders = readFile("./assets/employOrders.json", "utf8");
+  const employsOrders = readFile("./assets/transactionRecords.json", "utf8");
   const inputArgs = ["--query", "--empId", "111111"];
   const messageToPrint = processInput(inputArgs, employsOrders);
   console.log(toString(messageToPrint));

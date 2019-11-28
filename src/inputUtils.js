@@ -3,11 +3,11 @@ let { getJsonObject, getValueToProceed, getArgsObj } = generalUtils;
 const queryUtils = require("../src/queryUtils.js");
 let { queryOrders } = queryUtils;
 
-const processInput = function(inputArgs, employsOrders) {
+const processInput = function(inputArgs, transactionRecords) {
   const optionFunc = getFunctionToProceed(inputArgs[0]);
   const argsObject = getArgsObj(inputArgs.slice(1));
-  const employsOrdersObj = getJsonObject(employsOrders);
-  const message = optionFunc(employsOrdersObj, argsObject);
+  const transactionRecordsObj = getJsonObject(transactionRecords);
+  const message = optionFunc(argsObject, transactionRecordsObj);
   return message;
 };
 

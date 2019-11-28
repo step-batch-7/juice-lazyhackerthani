@@ -1,9 +1,6 @@
 const validateKeys = require("../src/objectKeyValidator.js").validateKeys;
-
-const beveragePredigators = {
-  "--empId": (id1, id2) => id1 === id2,
-  "--date": (date, dateTime) => date === dateTime.split("T", 1).toString()
-};
+const filterUtils = require("../src/filterUtils");
+const { getSuperSetObjects } = filterUtils;
 
 const getTotJuiceCount = function(orders) {
   let totJuice = 0;
@@ -13,15 +10,22 @@ const getTotJuiceCount = function(orders) {
   return ["Total: " + totJuice + " Juice"];
 };
 
-const queryOrders = function(employOrders, argsObj) {
-  if (!isValidQuery(argsObj)) {
-    return [["invalid query options"]];
-  }
-  const orders = employOrders[argsObj["--empId"]];
-  const ordersHist = orders.map(getTransactionInArray);
-  return [["Employee ID", "Beverage", "Quantity", "Date"]].concat(ordersHist, [
-    getTotJuiceCount(orders)
-  ]);
+const queryOrders = function(argsObj, transactionRecords) {
+  const beveragePredigators = {
+    "--date": (date, dateTime) => date === dateTime.split("T", 1).toString()
+  };
+  const queriedOrders = getSuperSetObjects(
+    argsObj,
+    beveragePredigators,
+    transactionRecords
+  );
+  const ordersInArray = queriedOrders.map(getTransactionInArray);
+  const totJuice = getTotJuiceCount(queriedOrders);
+  return [["Employee ID", "Beverage", "Quantity", "Date"]].concat(
+    ordersInArray,
+    [totJuice]
+  );
+  return totJuice;
 };
 
 const getTransactionInArray = function(transObj) {
@@ -34,7 +38,7 @@ const getTransactionInArray = function(transObj) {
 };
 
 const isValidQuery = function(argsObj) {
-  const rule = { $or: ["--empId", "--date"] };
+  const rule = { $or: ["--empId", "--date", "--beverage"] };
   return validateKeys(rule, argsObj);
 };
 
