@@ -17,6 +17,14 @@ const getValueToProceed = function(objectToGetValue, option, defaultValue) {
   return defaultValue;
 };
 
+const getFalse = function() {
+  return false;
+};
+
+const isEqual = function(a, b) {
+  return a === b;
+};
+
 const getArgsObj = function(argsArray) {
   if (argsArray.length == 0) {
     return {};
@@ -31,3 +39,5 @@ exports.getJsonObject = getJsonObject;
 exports.getStringifiedObj = getStringifiedObj;
 exports.getValueToProceed = getValueToProceed;
 exports.getArgsObj = getArgsObj;
+exports.getFalse = getFalse;
+exports.isEqual = isEqual;

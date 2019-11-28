@@ -1,5 +1,10 @@
 const validateKeys = require("../src/objectKeyValidator.js").validateKeys;
 
+const beveragePredigators = {
+  "--empId": (id1, id2) => id1 === id2,
+  "--date": (date, dateTime) => date === dateTime.split("T", 1).toString()
+};
+
 const getTotJuiceCount = function(orders) {
   let totJuice = 0;
   const objValues = orders.map(order => {
