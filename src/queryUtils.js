@@ -1,3 +1,5 @@
+const beverageUtils = require("../src/beverageUtils.js");
+const { objToArrayInOrder } = beverageUtils;
 const validateKeys = require("../src/objectKeyValidator.js").validateKeys;
 const filterUtils = require("../src/filterUtils");
 const { getSuperSetObjects } = filterUtils;
@@ -19,22 +21,11 @@ const queryOrders = function(argsObj, transactionRecords) {
     beveragePredigators,
     transactionRecords
   );
-  const ordersInArray = queriedOrders.map(getTransactionInArray);
+  const formatQueriedRecords = queriedOrders.map(objToArrayInOrder);
   const totJuice = getTotJuiceCount(queriedOrders);
-  return [["Employee ID", "Beverage", "Quantity", "Date"]].concat(
-    ordersInArray,
-    [totJuice]
-  );
-  return totJuice;
-};
-
-const getTransactionInArray = function(transObj) {
   return [
-    transObj["--empId"],
-    transObj["--beverage"],
-    transObj["--qty"],
-    transObj["--date"]
-  ];
+    ["Employee ID", "Beverage", "Quantity", "Date"]
+  ].concat(formatQueriedRecords, [totJuice]);
 };
 
 const isValidQuery = function(argsObj) {
@@ -44,5 +35,4 @@ const isValidQuery = function(argsObj) {
 
 exports.getTotJuiceCount = getTotJuiceCount;
 exports.queryOrders = queryOrders;
-exports.getTransactionInArray = getTransactionInArray;
 exports.isValidQuery = isValidQuery;

@@ -1,5 +1,17 @@
 [
   {
+    "--empId": "111112",
+    "--beverage": "pineapple",
+    "--qty": "1",
+    "--date": "2019-11-29T14:30:18.108Z"
+  },
+  {
+    "--empId": "111112",
+    "--beverage": "pineapple",
+    "--qty": "1",
+    "--date": "2019-11-29T14:29:10.618Z"
+  },
+  {
     "--empId": "111111",
     "--beverage": "orange",
     "--qty": "1",
@@ -7,7 +19,7 @@
   },
   {
     "--empId": "111111",
-    "--beverage": "Apple",
+    "--beverage": "apple",
     "--qty": "1",
     "--date": "2019-12-20T05:50:28.267Z"
   },
@@ -19,7 +31,7 @@
   },
   {
     "--empId": "111112",
-    "--beverage": "Pineapple",
+    "--beverage": "pineapple",
     "--qty": "1",
     "--date": "2019-12-20T05:50:28.267Z"
   }

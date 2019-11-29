@@ -1,11 +1,6 @@
 const assert = require("chai").assert;
 const queryUtils = require("../src/queryUtils.js");
-let {
-  getTotJuiceCount,
-  getTransactionInArray,
-  queryOrders,
-  isValidQuery
-} = queryUtils;
+let { getTotJuiceCount, queryOrders, isValidQuery } = queryUtils;
 
 describe("getTotJuiceCount", function() {
   it("should return a string which says how many juices drink by the employ from whole array of object", function() {
@@ -18,20 +13,6 @@ describe("getTotJuiceCount", function() {
       }
     ];
     assert.deepStrictEqual(getTotJuiceCount(employOrders), ["Total: 1 Juice"]);
-  });
-});
-
-describe("getTransactionInArray", function() {
-  it("should return transaction details in array in order", function() {
-    assert.deepStrictEqual(
-      getTransactionInArray({
-        "--empId": "111111",
-        "--beverage": "orange",
-        "--qty": "1",
-        "--date": "2019-11-20T05:50:28.267Z"
-      }),
-      ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"]
-    );
   });
 });
 
@@ -50,6 +31,7 @@ describe("queryOrders", function() {
       ["111111", "orange", "1", "2019-11-20T05:50:28.267Z"],
       ["Total: 1 Juice"]
     ];
+
     assert.deepStrictEqual(
       queryOrders({ "--empId": "111111" }, records),
       expected

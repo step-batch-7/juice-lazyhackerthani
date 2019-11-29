@@ -1,27 +1,27 @@
-const generalUtils = require("../src/generalUtils.js");
+const generalUtils = require('../src/generalUtils.js');
 let { getJsonObject, getValueToProceed, getArgsObj } = generalUtils;
-const queryUtils = require("../src/queryUtils.js");
+const queryUtils = require('../src/queryUtils.js');
 let { queryOrders } = queryUtils;
+const saveUtils = require('../src/saveUtils.js');
+const { saveOrders } = saveUtils;
+const beverageUtils = require('../src/beverageUtils.js');
+const { callMeWhenInvalidInput } = beverageUtils;
 
-const processInput = function(inputArgs, transactionRecords) {
+const processInput = function(inputArgs, transactionRecords, path) {
   const optionFunc = getFunctionToProceed(inputArgs[0]);
   const argsObject = getArgsObj(inputArgs.slice(1));
   const transactionRecordsObj = getJsonObject(transactionRecords);
-  const message = optionFunc(argsObject, transactionRecordsObj);
+  const message = optionFunc(argsObject, transactionRecordsObj, path);
   return message;
 };
 
 const getFunctionToProceed = function(optionToProceed) {
-  const optionFuncList = { "--query": queryOrders };
+  const optionFuncList = { '--query': queryOrders, '--save': saveOrders };
   return getValueToProceed(
     optionFuncList,
     optionToProceed,
     callMeWhenInvalidInput
   );
-};
-
-const callMeWhenInvalidInput = function() {
-  return [];
 };
 
 exports.processInput = processInput;

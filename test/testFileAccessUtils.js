@@ -1,33 +1,25 @@
-const assert = require("assert");
+const assert = require("chai").assert;
+const fs = require("fs");
 const fileAccessUtils = require("../src/fileAccessUtils.js");
 let { writeFile, readFile } = fileAccessUtils;
 
 describe("writeFile", function() {
-  it("should return 1 if it successfully write to the given file", function() {
-    assert.deepStrictEqual(
-      writeFile("./assets/testFileForFileWrite.json", '{ "a": "1" }', "utf8"),
-      true
+  it("should give true if it successfully write to the given file", function() {
+    assert.isTrue(
+      writeFile("./assets/testFileForFileWrite.json", '[{ "a": "1" }]', "utf8")
     );
   });
-  it("should return 0 if it failed to write the given file", function() {
-    assert.deepStrictEqual(
-      writeFile("../assets/testFileForFileWrite.json", '{ "a": "1" }', "utf8"),
-      false
+  it("should give false if it successfully write to the given file", function() {
+    assert.isFalse(
+      writeFile("../assets/testFileForFileWrite.json", '[{ "a": "1" }]', "utf8")
     );
   });
 });
 
 describe("readFile", function() {
   it("should return file content if it successfully read to the given file", function() {
-    assert.deepStrictEqual(
-      readFile("./assets/testFileForFileRead.json", "utf8"),
-      '{ "a": "1" }'
-    );
-  });
-  it("should return 0 if it failed to read the given file", function() {
-    assert.deepStrictEqual(
-      readFile("../assets/testFileForFileRead.json", "utf8"),
-      "{}"
-    );
+    const path = "./assets/testFileForFileRead.json";
+    fs.writeFileSync(path, '[{ "a": "1" }]\n', "utf8");
+    assert.deepStrictEqual(readFile(path, "utf8"), '[{ "a": "1" }]\n');
   });
 });
