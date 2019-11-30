@@ -1,9 +1,9 @@
 const objToArrayInOrder = function(transObj) {
   return [
-    transObj["--empId"],
-    transObj["--beverage"],
-    transObj["--qty"],
-    transObj["--date"]
+    transObj['--empId'],
+    transObj['--beverage'],
+    transObj['--qty'],
+    transObj['--date']
   ];
 };
 
@@ -12,3 +12,4 @@ const callMeWhenInvalidInput = function() {
 };
 
 exports.objToArrayInOrder = objToArrayInOrder;
+exports.callMeWhenInvalidInput = callMeWhenInvalidInput;

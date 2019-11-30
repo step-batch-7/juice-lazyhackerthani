@@ -7,11 +7,16 @@ const { saveOrders } = saveUtils;
 const beverageUtils = require('../src/beverageUtils.js');
 const { callMeWhenInvalidInput } = beverageUtils;
 
-const processInput = function(inputArgs, transactionRecords, path) {
+const processInput = function(inputArgs, transactionRecords, path, timeStamp) {
   const optionFunc = getFunctionToProceed(inputArgs[0]);
   const argsObject = getArgsObj(inputArgs.slice(1));
   const transactionRecordsObj = getJsonObject(transactionRecords);
-  const message = optionFunc(argsObject, transactionRecordsObj, path);
+  const message = optionFunc(
+    argsObject,
+    transactionRecordsObj,
+    path,
+    timeStamp
+  );
   return message;
 };
 

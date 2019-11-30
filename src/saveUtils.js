@@ -3,13 +3,12 @@ const { writeFile } = fileAccessUtils;
 const beverageUtils = require('../src/beverageUtils.js');
 const { objToArrayInOrder } = beverageUtils;
 const validateKeys = require('../src/objectKeyValidator.js').validateKeys;
-const getDate = require('../src/dateUtils.js').getDate;
 
-const saveOrders = function(newOrder, employOrders, path, dateFunc) {
+const saveOrders = function(newOrder, employOrders, path, timeStamp) {
   if (!isValidSave(newOrder)) {
     return [];
   }
-  newOrder['--date'] = getDate();
+  newOrder['--date'] = timeStamp().toJSON();
   const newRecords = JSON.stringify([newOrder].concat(employOrders));
   writeFile(path, newRecords);
   const formatedSaveRecord = objToArrayInOrder(newOrder);

@@ -1,4 +1,9 @@
 node_modules/
 .nyc_output
-/assets/*
-/test/testFileAccessUtils.js
+assets/testFileForFileWrite.json
+assets/testFileForFileRead.json
+assets/transactionRecords.json
+test/testFileAccessUtils.js
+appTest/*
+runAppTests.sh
+missingFile.json
