@@ -7,3 +7,4 @@ test/testFileAccessUtils.js
 appTest/*
 runAppTests.sh
 missingFile.json
+failures.txt

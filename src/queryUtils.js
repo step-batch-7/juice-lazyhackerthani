@@ -9,7 +9,7 @@ const getTotJuiceCount = function(orders) {
   const objValues = orders.map(order => {
     totJuice = totJuice + +order['--qty'];
   });
-  return ['Total: ' + totJuice + ' Juices'];
+  return [`Total: ${totJuice} Juices`];
 };
 
 const queryOrders = function(argsObj, transactionRecords) {
