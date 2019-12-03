@@ -1,8 +1,8 @@
-const fs = require("fs");
+const fs = require('fs');
 
 const writeFile = function(path, data) {
   try {
-    fs.writeFileSync(path, data, "utf8");
+    fs.writeFileSync(path, data, 'utf8');
     return true;
   } catch (error) {
     return false;
@@ -11,15 +11,9 @@ const writeFile = function(path, data) {
 
 const readFile = function(path) {
   if (fs.existsSync(path)) {
-    return fs.readFileSync(path, "utf8");
+    return fs.readFileSync(path, 'utf8');
   }
-  return writeFile(path, "[]");
-};
-
-const makeDir = function(path) {
-  try {
-    fs.mkdirSync(path);
-  } catch (error) {}
+  return '[]';
 };
 
 exports.writeFile = writeFile;

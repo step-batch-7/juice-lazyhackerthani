@@ -1,17 +1,6 @@
 const assert = require('chai').assert;
 const saveUtils = require('../src/saveUtils.js');
-let { saveOrders, isValidSave } = saveUtils;
-
-describe('isValidSave', function() {
-  it('should True when input has all required arguments', function() {
-    assert.isTrue(
-      isValidSave({ '--beverage': 'Orange', '--empId': '11111', '--qty': '1' })
-    );
-  });
-  it("should False when input doesn't have all required arguments", function() {
-    assert.isFalse(isValidSave({ '--empId': '11111', '--qty': '1' }));
-  });
-});
+let { saveOrders } = saveUtils;
 
 describe('saveOrders', function() {
   it('should write the file when arguments are valid and gives data which is written.', function() {
@@ -48,8 +37,5 @@ describe('saveOrders', function() {
         '--date': '2019-11-20T05:50:28.267Z'
       }
     ];
-    let newOrder = { '--empId': '111111', '--qty': '1' };
-    let expected = [];
-    assert.deepStrictEqual(saveOrders(records, newOrder, path), expected);
   });
 });

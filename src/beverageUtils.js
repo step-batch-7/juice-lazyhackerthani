@@ -3,9 +3,4 @@ const objToArrayInOrder = function(transactionObj) {
   return fieldNames.map(name => transactionObj[name]);
 };
 
-const callMeWhenInvalidInput = function() {
-  return [];
-};
-
 exports.objToArrayInOrder = objToArrayInOrder;
-exports.callMeWhenInvalidInput = callMeWhenInvalidInput;
